@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galerie - Photo 1</title>
+
+  <!-- Tes polices + styles -->
+  <link rel="stylesheet" href="gallery-photo.css" />
+  <link rel="stylesheet" href="photo-idrissa.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <!-- Style du carrousel -->
+  <style>
+    .carousel-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 80px 0;
+      position: relative;
+      height: 500px;
+    }
+
+    .carousel-img {
+      position: absolute;
+      width: 300px;
+      transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+      filter: blur(4px);
+      opacity: 0.4;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .carousel-img.active {
+      transform: scale(1.2);
+      filter: none;
+      opacity: 1;
+      z-index: 3;
+    }
+
+    .carousel-img.left {
+      transform: translateX(-250px) scale(0.9);
+      z-index: 2;
+    }
+
+    .carousel-img.right {
+      transform: translateX(250px) scale(0.9);
+      z-index: 2;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+<a href="Porfolio-site.html" class="logo">VASSOU</a>
+      <ul class="nav-links">
+        <li><a href="Porfolio-site.html#a-propos">À propos</a></li>
+        <li><a href="Projet-illustration.html">Projet illustration</a></li>
+        <li><a href="Projet-web.html">Projet web</a></li>
+        <li><a href="gallery-photo.html">Projet photo</a></li>
+      </ul>
+      <a href="#contact" class="btn primary-btn">contact</a>
+    </nav>
+  </header>
+
+<!-- Bouton Retour à la galerie -->
+<div class="retour-wrapper">
+<a href="gallery-photo.html#gallery-photo" class="btn-retour">← Retour à la galerie</a>
+</div>
+
+  <!-- CAROUSEL SECTION -->
+  <section class="carousel-section">
+    <img src="image/Gallery-photo/jem-1.jpg" class="carousel-img active" alt="1" />
+    <img src="image/Gallery-photo/jem-2.jpg" class="carousel-img active" alt="1" />
+    <img src="image/Gallery-photo/jem-3.jpg" class="carousel-img active" alt="1" />
+    <img src="image/Gallery-photo/jem-4.jpg" class="carousel-img" alt="2" />
+    <img src="image/Gallery-photo/jem-5.jpg" class="carousel-img" alt="3" />
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2025 Vasouleymane SOUMAHORO. Portfolio-personnel.</p>
+  </footer>
+
+  <!-- Script pour carrousel -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const images = document.querySelectorAll(".carousel-img");
+      let current = 0;
+
+      function updateCarousel(index) {
+        images.forEach((img, i) => {
+          img.classList.remove("active", "left", "right");
+
+          if (i === index) {
+            img.classList.add("active");
+          } else if (i === (index - 1 + images.length) % images.length) {
+            img.classList.add("left");
+          } else if (i === (index + 1) % images.length) {
+            img.classList.add("right");
+          }
+        });
+      }
+
+      images.forEach((img, index) => {
+        img.addEventListener("click", () => {
+          current = index;
+          updateCarousel(current);
+        });
+      });
+
+      updateCarousel(current);
+    });
+  </script>
+</body>
+</html>
