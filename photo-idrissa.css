@@ -1,36 +1,46 @@
+/* Empêche le débordement horizontal sur tout le site */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Section du slider */
 .slider-section {
   padding: 60px 20px;
   background: linear-gradient(to right, #f3efff, #e0d1ff);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.slide {
-  max-width: 100%;
-  height: auto;
-  max-height: 600px; /* ajuste cette valeur selon la taille que tu veux */
-  margin: 0 auto;
-  display: none;
-  object-fit: contain;
-}
-
+/* Conteneur des slides */
 .slides {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
+/* Slide individuelle */
 .slide {
-  min-width: 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
   height: auto;
   display: none;
   object-fit: cover;
 }
 
+/* Slide visible */
 .slide.active {
   display: block;
 }
 
+/* Boutons du slider */
 .slider button {
   position: absolute;
   top: 50%;
@@ -57,9 +67,10 @@
   right: 20px;
 }
 
+/* Bouton de retour */
 .retour-wrapper {
   display: flex;
-  justify-content: flex-start; /* Aligné à gauche */
+  justify-content: flex-start;
   margin: 30px 0 0 50px;
 }
 
@@ -75,4 +86,33 @@
 
 .btn-retour:hover {
   background-color: #cb76ff;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .slider-section {
+    padding: 30px 10px;
+  }
+
+  .slide {
+    object-fit: contain;
+    height: auto;
+  }
+
+  .slider button {
+    font-size: 1.5rem;
+    padding: 8px 12px;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  .retour-wrapper {
+    margin: 20px 0 0 20px;
+  }
 }
